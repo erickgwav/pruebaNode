@@ -1,9 +1,9 @@
 module.exports = {
-    area: function(width) {
-    return Math.pow(width, 2);
-    },
-    perimetro: function (width){
-    return width * 4;
-    }
-   };
+  minutos: function (segs) {
+    return segs/60;
+  },
+  horas: function (segs) {
+    return segs/3600;
+  },
+};
    
