@@ -1,16 +1,15 @@
-const express = require("express"); //importar express
+const express = require('express');
+const appRoute = require('./routes/rutas.js');
 const bodyParser = require("body-parser");
-const cors = require("cors");
-const misRutas = require("./routes/rutas");
-const app = express(); //crear al servidor
+
+const app = express();
 const port = process.env.PORT || 3000;
-app.use(cors());
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use('/', misRutas);
 
+app.use('/', appRoute);
 
 app.listen(port, () => {
-    console.log(`hola servidor ejecucion en http://localhost:${port}`);
+    console.log(`http://localhost:${port}`);
 })
