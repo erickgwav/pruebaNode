@@ -72,15 +72,17 @@ router.get('/mailDuda/:correo/:nombre/:descripcion', (req, res) => {
   });
 
 
-  router.get('/mailCita/:correo/:usuario/:datos', (req, res) => {
+  router.get('/mailCita/:correo/:nombre/:date/:nombrePel/:salaSel/:numAsientos', (req, res) => {
     const userEmail = req.params.correo;
-    const usuario = req.params.usuario;
-    const datos = req.params.datos;
+    const usuario = req.params.nombre;
+    const fecha = req.params.date;
+    const pelicula = req.params.nombrePel;
+    const sala = req.params.salaSel;
+    const asientos = req.params.numAsientos;
     const mailAdmin = "cinefaction.mx@gmail.com"
 
     console.log("Correo: ",userEmail);
     console.log("usuario: ",usuario);
-    console.log("datos: ",datos);
     
     let config = {
       service: "gmail",
@@ -108,19 +110,19 @@ router.get('/mailDuda/:correo/:nombre/:descripcion', (req, res) => {
         table: {
             data: [
                 {
-                    Sala: `3`,
-                    Pelicula: `Everything Everywhere All at Once`,
-                    Fecha: `20/11/2045`,
-                    Hora: `15:00`
+                    Sala: sala.slice(4),
+                    Pelicula: pelicula,
+                    'Fecha-Hora': fecha,
+                    NumAsientos: asientos
                 }
             ],
             columns: {
                 // Optionally, customize the column widths
                 customWidth: {
                     Sala: '10%',
-                    Pelicula: '40%',
-                    Fecha: '30%',
-                    Hora: '20%'
+                    Pelicula: '50%',
+                    'Fecha-Hora': '30%',
+                    NumAsientos: '10%'
                 },
             }
         },
